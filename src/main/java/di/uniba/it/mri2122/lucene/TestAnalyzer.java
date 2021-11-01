@@ -5,12 +5,14 @@
  */
 package di.uniba.it.mri2122.lucene;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.StopFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.analysis.core.WhitespaceAnalyzer;
 import org.apache.lucene.analysis.en.EnglishAnalyzer;
@@ -50,6 +52,7 @@ public class TestAnalyzer {
     public static void main(String[] args) throws IOException {
         System.out.println(getTokens(new StringReader("the full-text indexing and search API: lucene.apache.org"), new WhitespaceAnalyzer()));
         System.out.println(getTokens(new StringReader("the full-text indexing and search API: lucene.apache.org"), new StandardAnalyzer()));
+        System.out.println(getTokens(new StringReader("the full-text indexing and search API: lucene.apache.org"), new StandardAnalyzer(new FileReader("resources/en_stopword"))));
         System.out.println(getTokens(new StringReader("the full-text indexing and search API: lucene.apache.org"), new EnglishAnalyzer()));
         System.out.println(getTokens(new StringReader("the full-text indexing and search API: lucene.apache.org"), new MyAnalyzer()));
     }
