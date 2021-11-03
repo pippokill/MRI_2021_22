@@ -21,6 +21,8 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
+import org.apache.lucene.search.similarities.ClassicSimilarity;
+import org.apache.lucene.search.similarities.TFIDFSimilarity;
 import org.apache.lucene.store.FSDirectory;
 
 /**
@@ -36,6 +38,8 @@ public class CranSearcher {
         if (args.length > 2) {
             FSDirectory fsdir = FSDirectory.open(new File(args[1]).toPath());
             IndexSearcher searcher = new IndexSearcher(DirectoryReader.open(fsdir));
+            // set classic cosine similarity, remove for BM25 similarity
+            searcher.setSimilarity(new ClassicSimilarity());
             BufferedReader reader = new BufferedReader(new FileReader(args[0]));
             BufferedWriter writer = new BufferedWriter(new FileWriter(args[2]));
             Gson gson = new Gson();
@@ -43,7 +47,7 @@ public class CranSearcher {
             int idq=1;
             while (reader.ready()) {
                 CranQuery query = gson.fromJson(reader.readLine(), CranQuery.class);
-                String t=query.getQuery().replace("?", "").replace("*", "");
+                String t=query.getQuery().replace("?", "").replace("*", ""); // remove special chars
                 Query lq = qp.parse(t);
                 System.out.println(lq);
                 TopDocs topdocs = searcher.search(lq, 100);
