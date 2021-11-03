@@ -11,3 +11,4 @@ Descrizione dei package:
 * *di.uniba.it.mri2122.lucene.se*: Indicizzazione e ricerca
 * *di.uniba.it.mri2122.lucene.se.post*: Gestione della posting list
 * *di.uniba.it.mri2122.tika*: Utilizzo dell'API Tika, Tika+Lucene
+* *di.uniba.it.mri2021.rocchio*: Algoritmo di rocchio per lo pseudo-relevance feedback
