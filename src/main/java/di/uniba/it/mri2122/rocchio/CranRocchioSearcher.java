@@ -5,6 +5,8 @@
  */
 package di.uniba.it.mri2122.rocchio;
 
+import di.uniba.it.mri2122.entity.BoWUtils;
+import di.uniba.it.mri2122.entity.BoW;
 import com.google.gson.Gson;
 import di.uniba.it.mri2122.lucene.cran.CranQuery;
 import java.io.BufferedReader;

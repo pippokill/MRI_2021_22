@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package di.uniba.it.mri2122.rocchio;
+package di.uniba.it.mri2122.entity;
 
 import java.util.Collection;
 import java.util.HashMap;
