@@ -5,7 +5,6 @@
  */
 package di.uniba.it.mri2122.entity;
 
-import di.uniba.it.mri2122.rocchio.TermEntry;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;

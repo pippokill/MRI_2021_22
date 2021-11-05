@@ -5,6 +5,7 @@
  */
 package di.uniba.it.mri2122.rocchio;
 
+import di.uniba.it.mri2122.entity.TermEntry;
 import di.uniba.it.mri2122.entity.BoWUtils;
 import di.uniba.it.mri2122.entity.BoW;
 import com.google.gson.Gson;
@@ -121,13 +122,14 @@ public class CranRocchioSearcher {
         if (args.length > 2) {
             FSDirectory fsdir = FSDirectory.open(new File(args[1]).toPath());
             IndexSearcher searcher = new IndexSearcher(DirectoryReader.open(fsdir));
+            Analyzer analyzer = new StandardAnalyzer(EnglishAnalyzer.ENGLISH_STOP_WORDS_SET);
             BufferedReader reader = new BufferedReader(new FileReader(args[0]));
             BufferedWriter writer = new BufferedWriter(new FileWriter(args[2]));
             Set<String> fieldsSet = new HashSet<>();
             fieldsSet.add("title");
             fieldsSet.add("text");
             Gson gson = new Gson();
-            QueryParser qp = new QueryParser("text", new StandardAnalyzer(EnglishAnalyzer.ENGLISH_STOP_WORDS_SET));
+            QueryParser qp = new QueryParser("text", analyzer);
             int idq = 1;
             while (reader.ready()) {
                 CranQuery query = gson.fromJson(reader.readLine(), CranQuery.class);
@@ -147,7 +149,7 @@ public class CranRocchioSearcher {
                 // scalar product BETA*centroid of relevant documents
                 BoWUtils.scalarProduct(BETA, bowReldocs);
                 // extract query tokens using the analyser
-                List<String> qtokens = getTokens(new StringReader(t), new StandardAnalyzer(EnglishAnalyzer.ENGLISH_STOP_WORDS_SET));
+                List<String> qtokens = getTokens(new StringReader(t), analyzer);
                 // build the BoW of query terms
                 BoW bowQuery = new BoW();
                 for (String qt : qtokens) {
