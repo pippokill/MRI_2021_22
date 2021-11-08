@@ -108,6 +108,7 @@ public class CranRocchioSearcher {
             tokens.add(token);
         }
         tokenStream.end();
+        tokenStream.close();
         return tokens;
     }
 

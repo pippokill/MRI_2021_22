@@ -39,7 +39,7 @@ public class CranSearcher {
             FSDirectory fsdir = FSDirectory.open(new File(args[1]).toPath());
             IndexSearcher searcher = new IndexSearcher(DirectoryReader.open(fsdir));
             // set classic cosine similarity, remove for BM25 similarity
-            searcher.setSimilarity(new ClassicSimilarity());
+            //searcher.setSimilarity(new ClassicSimilarity());
             BufferedReader reader = new BufferedReader(new FileReader(args[0]));
             BufferedWriter writer = new BufferedWriter(new FileWriter(args[2]));
             Gson gson = new Gson();
