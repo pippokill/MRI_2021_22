@@ -38,6 +38,18 @@ public class TestTC {
         List<String> pknn = knn.test(testset);
         System.out.println("KNN accuracy: " + knn.accuracy(testset, pknn));
         knn.evaluate(testset, pknn);
+        //Rochcio
+        TextCategorization rocchio = new Rocchio();
+        rocchio.train(traingset);
+        List<String> procchio = rocchio.test(testset);
+        System.out.println("Rocchio accuracy: " + rocchio.accuracy(testset, procchio));
+        rocchio.evaluate(testset, procchio);
+        //Naive Bayes
+        TextCategorization nbayes = new NaiveBayes();
+        nbayes.train(traingset);
+        List<String> pbayes = nbayes.test(testset);
+        System.out.println("Naive Bayes accuracy: " + nbayes.accuracy(testset, pbayes));
+        nbayes.evaluate(testset, pbayes);
     }
 
 }
