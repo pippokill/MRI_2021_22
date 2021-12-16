@@ -114,7 +114,7 @@ public class UserBasedIF extends CollaborativeIF {
         if (co.isEmpty()) {
             return 0;
         } else {
-            // compute Pearson correlation
+            // compute cosine correlation
             Map<String, Integer> m1 = IFDatasetUtils.ratingsToMapByItem(r1);
             Map<String, Integer> m2 = IFDatasetUtils.ratingsToMapByItem(r2);
             double c = 0;

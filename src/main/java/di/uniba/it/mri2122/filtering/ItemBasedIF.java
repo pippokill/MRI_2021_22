@@ -53,6 +53,7 @@ public class ItemBasedIF extends CollaborativeIF {
                 double n = 0;
                 double d1 = 0;
                 double d2 = 0;
+                // cosine similarity
                 for (String idu : m1.keySet()) {
                     Integer r = m2.get(idu);
                     if (r != null) {
@@ -73,6 +74,7 @@ public class ItemBasedIF extends CollaborativeIF {
             if (neigh.size() > k) {
                 neigh = neigh.subList(0, k);
             }
+            // prediction
             double p = 0;
             double d = 0;
             for (Neighborhood n : neigh) {
